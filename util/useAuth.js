@@ -7,10 +7,8 @@ import { useRouter } from 'next/router'
 export default function useAuth() {
     const router = useRouter()
     const { data: user, error, mutate } = useSWR('/api/user', fetcher)
-    const csrf = () => axios.get('/sanctum/csrf-cookie')
     const login = async (credentials, setErrors) => {
         setErrors([]);
-        await csrf()
         axios
             .post('/api/login', credentials)
             .then(() => mutate() && console.log('user==>', user)
@@ -31,7 +29,6 @@ export default function useAuth() {
 
     return {
         user,
-        csrf,
         login,
         logout
     }
