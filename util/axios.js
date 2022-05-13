@@ -2,7 +2,7 @@ import axios from 'axios'
 
 
 export default axios.create({
-    baseURL: 'https://hahigh.herokuapp.com',
+    baseURL: 'http://localhost:8000',
     headers: {
         'X-Requested-With': 'XMLHttpRequest'
     },
