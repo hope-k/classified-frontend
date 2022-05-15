@@ -33,6 +33,7 @@ export default function useAuth() {
         user,
         login,
         logout,
+        csrf
     }
 }
 
