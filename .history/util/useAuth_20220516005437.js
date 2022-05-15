@@ -9,8 +9,10 @@ import cookie from 'js-cookie'
 export default function useAuth() {
     const router = useRouter()
     const { data: user, error, mutate } = useSWR('/api/user', () => axios.get('/api/user').then(res => res.data.user))
+    const csrf = () => axios.get('/sanctum/csrf-cookie')
     const login = async (credentials, setErrors) => {
         setErrors([]);
+        await csrf()
         axios.post('/api/login', credentials)
             .then((res) => mutate())
             .catch(error => {
@@ -33,6 +35,7 @@ export default function useAuth() {
         user,
         login,
         logout,
+        csrf
     }
 }
 
