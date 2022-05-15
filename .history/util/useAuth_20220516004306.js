@@ -13,7 +13,8 @@ export default function useAuth() {
     const login = async (credentials, setErrors) => {
         setErrors([]);
         const {config: {headers}} = await csrf()
-        axios.post('/api/login', credentials, headers)
+        console.log(token)
+        axios.post('/api/login', credentials)
             .then((res) => mutate())
             .catch(error => {
                 if (error) {
