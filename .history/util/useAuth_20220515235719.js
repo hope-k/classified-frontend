@@ -6,16 +6,15 @@ import { useRouter } from 'next/router'
 import cookie from 'js-cookie'
 
 
-export default async function useAuth() {
+export default function useAuth() {
     const router = useRouter()
     const { data: user, error, mutate } = useSWR('/api/user', () => axios.get('/api/user').then(res => res.data.user))
-    const csrf = await axios.get('/sanctum/csrf-cookie')
+    const csrf = axios
     const login = async (credentials, setErrors) => {
         setErrors([]);
-        csrf()
-        const {data} = useSWR('/api/login', () => {
+        const {data: token} = useSWR('/api/login', () => {
             axios.post('/api/login', credentials)
-                .then((res) => mutate('/api/user') && res.data)
+                .then((res) => cookie.set('token', res.data.token, ) && res.data.token && mutate('/api/user'))
                 .catch(error => {
                     if (error) {
                         //using flat() method to get rid of nested key value pair parenthesis since we are only getting the values
@@ -24,7 +23,9 @@ export default async function useAuth() {
                 })
         })
 
+        console.log('TOKEN=>', token)
         
+        return token
     }
     const logout = async () => {
         await axios.post('/api/logout')
@@ -32,12 +33,12 @@ export default async function useAuth() {
         mutate(null);
         router.push('/login')
     }
+    console.log('USER=====>', user)
 
     return {
         user,
         login,
-        logout,
-        csrf
+        logout
     }
 }
 

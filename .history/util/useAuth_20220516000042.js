@@ -24,7 +24,9 @@ export default async function useAuth() {
                 })
         })
 
+        console.log('TOKEN=>', token)
         
+        return token
     }
     const logout = async () => {
         await axios.post('/api/logout')

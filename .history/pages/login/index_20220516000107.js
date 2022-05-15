@@ -11,22 +11,21 @@ export default function LoginPage() {
 }
 //export async function getServerSideProps({ req }) {
 //  if (typeof window !== 'undefined') {
-//    const token = JSON.parse(localStorage.getItem('token'))
-//    console.log('TOKEN=>', token)
-//    if (token) {
-//      return {
-//        redirect: {
-//          destination: '/',
-//          permanent: false
-//  
-//        }
-//      }
-//  }
-//  }
-//
-//  return {
-//    props: {},
-//  }
-//}
-//
-//
+    const token = JSON.parse(localStorage.getItem('token'))
+    console.log('TOKEN=>', token)
+    if (token) {
+      return {
+        redirect: {
+          destination: '/',
+          permanent: false
+  
+        }
+      }
+  }
+  }
+
+  return {
+    props: {},
+  }
+}
+

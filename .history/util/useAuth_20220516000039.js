@@ -24,7 +24,9 @@ export default async function useAuth() {
                 })
         })
 
+        console.log('TOKEN=>', token)
         
+        return token
     }
     const logout = async () => {
         await axios.post('/api/logout')
@@ -32,6 +34,7 @@ export default async function useAuth() {
         mutate(null);
         router.push('/login')
     }
+    console.log('USER=====>', user)
 
     return {
         user,
