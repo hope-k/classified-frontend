@@ -12,7 +12,6 @@ export default function useAuth() {
     const csrf = () => axios.get('/sanctum/csrf-cookie')
     const login = async (credentials, setErrors) => {
         setErrors([]);
-        await csrf()
         axios.post('/api/login', credentials)
             .then((res) => mutate())
             .catch(error => {
