@@ -11,7 +11,7 @@ export default function Login() {
             <button onClick={() => login(credentials, setErrors)}>Login</button>
             <button onClick={() => logout()}>Logout</button>
             {
-                errors?.map(err => (
+                !!errors?.map(err => (
                     <h3>{err}</h3>
                 ))
             }

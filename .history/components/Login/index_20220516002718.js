@@ -5,7 +5,7 @@ import useAuth from '../../util/useAuth';
 export default function Login() {
     const {logout, login} = useAuth()
     const [errors, setErrors] = useState([]);
-    const credentials = { email: 'hope@gmail.com', password: 'kumordzie' }
+    const credentials = { email: 'hope@gmail.com', password: 'kumordzi' }
     return (
         <div>
             <button onClick={() => login(credentials, setErrors)}>Login</button>

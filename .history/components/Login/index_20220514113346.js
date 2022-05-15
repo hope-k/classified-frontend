@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
 import axios from '../../util/axios';
-import useAuth from '../../util/useAuth';
+import useAuth from '../../util/useAuth'
 
-export default function Login() {
-    const {logout, login} = useAuth()
+
+export default function Login({title}) {
+    const { logout, login, user } = useAuth();
     const [errors, setErrors] = useState([]);
     const credentials = { email: 'hope@gmail.com', password: 'kumordzie' }
     return (

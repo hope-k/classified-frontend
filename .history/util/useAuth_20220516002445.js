@@ -14,7 +14,7 @@ export default function useAuth() {
         setErrors([]);
         await csrf()
         axios.post('/api/login', credentials)
-            .then((res) => mutate())
+            .then((res) => mutate() && res.data)
             .catch(error => {
                 if (error) {
                     //using flat() method to get rid of nested key value pair parenthesis since we are only getting the values
