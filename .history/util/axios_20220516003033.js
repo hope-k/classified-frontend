@@ -3,7 +3,7 @@ import useAuth from './useAuth';
 import Cookies from 'js-cookie';
 
 export default axios.create({
-    baseURL: 'https://hahigh.herokuapp.com',
+    baseURL: 'http://localhost:8000',
     headers: {
         'X-Requested-With': 'XMLHttpRequest'
 
