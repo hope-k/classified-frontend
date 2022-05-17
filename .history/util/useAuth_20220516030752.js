@@ -24,7 +24,6 @@ export default function useAuth() {
     }
     const logout = async () => {
         await axios.post('/api/logout')
-        cookie.remove('isAuthenticated')
         mutate(null);
         router.push('/login')
     }

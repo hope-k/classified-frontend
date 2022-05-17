@@ -12,7 +12,7 @@ export default function useAuth() {
     const login = async (credentials, setErrors) => {
         setErrors([]);
         axios.post('/api/login', credentials)
-            .then((res) => mutate() && cookie.set('isAuthenticated', true))
+            .then((res) => mutate() && cookie.set)
             .catch(error => {
                 if (error) {
                     //using flat() method to get rid of nested key value pair parenthesis since we are only getting the values
@@ -24,7 +24,7 @@ export default function useAuth() {
     }
     const logout = async () => {
         await axios.post('/api/logout')
-        cookie.remove('isAuthenticated')
+        localStorage.clear()
         mutate(null);
         router.push('/login')
     }
